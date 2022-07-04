@@ -1,0 +1,42 @@
+{
+    "properties": {
+      "displayName": "Requerir una etiqueta y su valor en los recursos",
+      "policyType": "BuiltIn",
+      "mode": "Indexed",
+      "description": "Aplica una etiqueta obligatoria y su valor. No se aplica a los grupos de recursos.",
+      "metadata": {
+        "version": "1.0.1",
+        "category": "Tags"
+      },
+      "parameters": {
+        "tagName": {
+          "type": "String",
+          "metadata": {
+            "displayName": "Nombre de etiqueta",
+            "description": "Nombre de la etiqueta: por ejemplo, \"entorno\"."
+          }
+        },
+        "tagValue": {
+          "type": "String",
+          "metadata": {
+            "displayName": "Valor de etiqueta",
+            "description": "Valor de la etiqueta: por ejemplo, \"producción\"."
+          }
+        }
+      },
+      "policyRule": {
+        "if": {
+          "not": {
+            "field": "[concat('tags[', parameters('tagName'), ']')]",
+            "equals": "[parameters('tagValue')]"
+          }
+        },
+        "then": {
+          "effect": "deny"
+        }
+      }
+    },
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/1e30110a-5ceb-460c-a204-c1c3969c6d62",
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "1e30110a-5ceb-460c-a204-c1c3969c6d62"
+  }
