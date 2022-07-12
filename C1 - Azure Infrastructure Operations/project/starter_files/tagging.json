@@ -1,0 +1,17 @@
+{
+    "if": {
+        "allof": [
+            {
+                "field": "tags",
+                "exists": false
+            },
+            {
+                "field":"type",
+                "like":"resourceGroup*"
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+        }
+    }
